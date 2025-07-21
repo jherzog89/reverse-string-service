@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: herzog.webservices.restful.RestfulApplicationTests
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.460 s -- in herzog.webservices.restful.RestfulApplicationTests
