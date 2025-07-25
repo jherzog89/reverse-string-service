@@ -1,3 +1,3 @@
-package herzog.webservices.restful.jwt;
+package herzog.webservices.restful.authentication;
 
 public record JwtTokenRequest(String username, String password) {}

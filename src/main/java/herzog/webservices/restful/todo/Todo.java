@@ -2,48 +2,35 @@ package herzog.webservices.restful.todo;
 
 import java.util.Date;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+
+
+@Entity
 public class Todo {
-    private long id;
+
+    @Id
+    @GeneratedValue
+    private Long id;
     private String username;
     private String description;
-
-    public Todo(){
-        this.id=-1;
-    }
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + (int) (id ^ (id >>> 32));
-        return result;
-    }
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Todo other = (Todo) obj;
-        if (id != other.id)
-            return false;
-        return true;
-    }
     private Date targetDate;
     private boolean isDone;
-    
-    public Todo(long id, String username, String description, Date targetDate, boolean isDone) {
+
+    public Todo(){}
+
+    public Todo(Long id, String username, String description, Date targetDate, boolean isDone) {
         this.id = id;
         this.username = username;
         this.description = description;
         this.targetDate = targetDate;
         this.isDone = isDone;
     }
-    public long getId() {
+    public Long getId() {
         return id;
     }
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
     public String getUsername() {
@@ -70,5 +57,26 @@ public class Todo {
     public void setDone(boolean isDone) {
         this.isDone = isDone;
     }
+        @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + (int) (id ^ (id >>> 32));
+        return result;
+    }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Todo other = (Todo) obj;
+        if (id != other.id)
+            return false;
+        return true;
+    }
+    
     
 }

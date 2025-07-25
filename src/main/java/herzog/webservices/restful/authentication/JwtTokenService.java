@@ -1,4 +1,4 @@
-package herzog.webservices.restful.jwt;
+package herzog.webservices.restful.authentication;
 
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;

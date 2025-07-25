@@ -1,4 +1,4 @@
-package herzog.webservices.restful.jwt;
+package herzog.webservices.restful.authentication;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
