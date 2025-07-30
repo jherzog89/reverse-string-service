@@ -51,7 +51,9 @@ public class JwtSecurityConfig {
             "/v3/api-docs/**",
             "/swagger-resources/**",
             "/swagger-ui.html",
-            "/webjars/**").permitAll() //TODO for testing only
+            "/webjars/**"
+            //"*"//TODO for testing only
+            ).permitAll() 
                     //.requestMatchers(PathRequest.toH2Console()).permitAll() // h2-console is a servlet and NOT recommended for a production
                     .requestMatchers(HttpMethod.OPTIONS,"/**")
                     .permitAll()
