@@ -3,7 +3,6 @@ package herzog.webservices.restful.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,9 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import herzog.webservices.restful.model.ManipulatedString;
 import herzog.webservices.restful.service.StringManipulationService;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import jakarta.servlet.http.HttpServletRequest;
 
-@CrossOrigin(origins="*")
 @RestController
 public class StringManipulationRest {
 
@@ -22,6 +21,9 @@ public class StringManipulationRest {
     private StringManipulationService srv;
 
     @PostMapping("/reverseString")
+   // @Retry(name="default")
+   //@Bulkhead(name="default")
+    @RateLimiter(name="default")
     public List<ManipulatedString> reverseString(HttpServletRequest request, @RequestBody ManipulatedString strToBeReversed){
             System.out.println("Processing a POST in /reverseString");
             strToBeReversed.setApiUsed(request.getRequestURL().toString());
@@ -30,7 +32,11 @@ public class StringManipulationRest {
         return srv.getLastTenReversedStrings();//new ResponseEntity<>(srv.getLastTenReversedStrings(), HttpStatus.CREATED);
     }
 
+    //watch -n 0.1 http GET http://localhost:8765/reverseString
     @GetMapping("/reverseString")
+    //@Retry(name="default")
+     //@Bulkhead(name="default")
+    @RateLimiter(name="default")
     public List<ManipulatedString> getLastTenReversedStrings(){
         System.out.println("Processing a GET in /reverseString");
         return srv.getLastTenReversedStrings();
@@ -38,6 +44,9 @@ public class StringManipulationRest {
 
     //DELETE
     @DeleteMapping("/reverseString")
+    //@Retry(name="default")
+     //@Bulkhead(name="default")
+    @RateLimiter(name="default")
     public List<ManipulatedString> deleteAllManipulatedStrings(){
         System.out.println("Processing a DELETE in /reverseString");
 
@@ -46,18 +55,4 @@ public class StringManipulationRest {
         return srv.getLastTenReversedStrings();
 
     }
-
-
-    /*
-     * 
-     *     @PostMapping("/users/{username}/todos")
-    public ResponseEntity<Void> createTodo(@PathVariable String username,  
-    @RequestBody Todo todo){
-        Todo createdTodo = todoService.save(todo);
- 
-         URI uri = ServletUriComponentsBuilder
-            .fromCurrentRequest().path("/{id}").buildAndExpand(createdTodo.getId()).toUri();
-        return ResponseEntity.created(uri).build();
-    }
-     */
 }

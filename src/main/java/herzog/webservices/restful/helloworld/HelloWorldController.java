@@ -1,12 +1,11 @@
 package herzog.webservices.restful.helloworld;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 //controller
-@CrossOrigin(origins="*")
+//@CrossOrigin(origins="*")
 @RestController
 public class HelloWorldController {
 
