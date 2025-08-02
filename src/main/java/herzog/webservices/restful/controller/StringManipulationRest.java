@@ -20,6 +20,14 @@ public class StringManipulationRest {
     @Autowired
     private StringManipulationService srv;
 
+    public StringManipulationService getSrv() {
+        return srv;
+    }
+
+    public void setSrv(StringManipulationService srv) {
+        this.srv = srv;
+    }
+
     @PostMapping("/reverseString")
    // @Retry(name="default")
    //@Bulkhead(name="default")

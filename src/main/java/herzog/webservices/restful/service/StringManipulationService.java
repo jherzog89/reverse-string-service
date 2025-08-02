@@ -22,6 +22,14 @@ public class StringManipulationService {
     ManipulatedStringRepository repo;
 
 
+    public ManipulatedStringRepository getRepo() {
+        return repo;
+    }
+
+    public void setRepo(ManipulatedStringRepository repo) {
+        this.repo = repo;
+    }
+
     @Transactional
     public ManipulatedString reverseString(ManipulatedString maniStr){
         //populate microserviceId
